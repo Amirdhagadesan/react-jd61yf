@@ -1,13 +1,19 @@
-import React, { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-import App from './App';
-
-const rootElement = document.getElementById('root');
-const root = createRoot(rootElement);
-
-root.render(
-  <StrictMode>
-    <App />
-  </StrictMode>
+ReactDOM.render(
+  <div>
+    <h1>Hello World!</h1>
+    <h6>My World</h6>
+  </div>,
+  document.getElementById('root')
 );
+
+var h1 = document.createElement('h1');
+h1.className = 'Title';
+h1.id = 'title';
+h1.innerHTML = 'Hello World';
+document.getElementById('root').appendChild(h1);
+var h6 = document.createElement('h6');
+h6.innerHTML = 'My World';
+document.getElementById('root').appendChild(h6);
