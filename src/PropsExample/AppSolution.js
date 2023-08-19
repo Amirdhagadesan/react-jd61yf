@@ -17,7 +17,7 @@ let response = {
   },
   js: {
     title: 'JavaScript',
-    img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5o3Ona6Wyr_qhl9FMe0UCxdzamKn1DejAvNHyQr8dA5UeQUyOn19fDZiOBQoghTbCRl4&usqp=CAU',
+    img: 'https://www.freepnglogos.com/uploads/javascript-png/javascript-logo-hq-png-1.png',
     text: 'Scripting Language',
   },
 };
