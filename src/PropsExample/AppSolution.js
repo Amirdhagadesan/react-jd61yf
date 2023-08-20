@@ -1,8 +1,8 @@
 import React from 'react';
 import './style.css';
 import Heading from './Heading';
-import List from './List';
 import Card from './Card';
+import Footer from './Footer';
 
 let response = {
   html: {
@@ -38,6 +38,7 @@ export default function App() {
         img={response.js.img}
         text={response.js.text}
       />
+      <Footer />
     </div>
   );
 }

@@ -5,7 +5,14 @@ p {
 }
 
 .heading {
-  color: blue;
+  position: relative;
+  left: 0;
+  top: 0;
+  height: 100px;
+  width: 100%;
+  background-color: rgb(88, 84, 84);
+  color: white;
+  text-align: center;
 }
 
 ul {
@@ -26,6 +33,11 @@ ul {
 /* Remove extra left and right margins, due to padding */
 .row {
   margin: 0 -5px;
+  align-items: center;
+}
+
+.center {
+  margin: auto;
 }
 
 /* Clear floats after the columns */
@@ -50,4 +62,14 @@ ul {
   padding: 16px;
   text-align: center;
   background-color: #f1f1f1;
+}
+
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(88, 84, 84);
+  color: white;
+  text-align: center;
 }
