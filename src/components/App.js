@@ -22,10 +22,15 @@ let response = {
   },
 };
 
+function createCard(tech) {
+  return <Card title={tech.title}
+}
 export default function App() {
   return (
     <div>
       <Heading title="React Prerequisites" />
+      {response.map(createCard)}
+      
       <Card
         title={response.html.title}
         img={response.html.img}
