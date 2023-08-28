@@ -1,5 +1,6 @@
 import React from 'react';
 import './style.css';
+
 let isLogged = true;
 
 export default function App() {
