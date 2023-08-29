@@ -1,0 +1,22 @@
+{
+  "techDetails": [
+    {
+      "id": 1,
+      "title": "HTML5",
+      "img": "https://img.freepik.com/free-icon/html-5_318-566077.jpg",
+      "desc": "HTML is a Markup Language"
+    },
+    {
+      "id": 2,
+      "title": "CSS3",
+      "img": "https://cdn4.iconfinder.com/data/icons/social-media-logos-6/512/121-css3-512.png",
+      "desc": "Style Sheet"
+    },
+    {
+      "id": 3,
+      "title": "JavaScript",
+      "img": "https://www.freepnglogos.com/uploads/javascript/javascript-online-logo-for-website-0.png",
+      "desc": "Scripting Language"
+    }
+  ]
+}
