@@ -1,31 +1,19 @@
 import React from 'react';
 import './style.css';
+import Form from './Form';
+import Header from './Header';
 
-let isLogged = true;
+var isLogged = false;
+var isRegistered = false;
 
-//Example of Conditional Rendering
+function checkLoggedState() {
+  if (isLogged === true) {
+    return <Header title="Welcome User" />;
+  } else {
+    return <Form isRegistered={isRegistered} />;
+  }
+}
+
 export default function App() {
-  return (
-    <div class="login-wrapper">
-      <h1>Welcome Amir</h1>
-      <form action="" class="form">
-        <h2>Login</h2>
-        <input
-          type="text"
-          name="loginUser"
-          id="loginUser"
-          placeholder="User Name"
-          required
-        />
-        <input
-          type="password"
-          name="loginPassword"
-          id="loginPassword"
-          placeholder="Password"
-          required
-        />
-        <input type="submit" value="Login" class="submit-btn" />
-      </form>
-    </div>
-  );
+  return <div class="login-wrapper">{checkLoggedState()}</div>;
 }
