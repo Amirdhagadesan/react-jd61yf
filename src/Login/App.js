@@ -3,6 +3,7 @@ import './style.css';
 
 let isLogged = true;
 
+//Example of Conditional Rendering
 export default function App() {
   return (
     <div class="login-wrapper">
