@@ -1,0 +1,566 @@
+What is React?
+React is a Javascript library used to build user interfaces. Using React we can create Re-usable UI compnents.  It is an open-source, component-based front end library which is responsible only for the view layer of the application.  It was developed and maintained by Facebook and later used in its products like WhatsApp & Instagram.
+Create React App 
+To test and learn React, you should set up a React Environment on your system.We use the create-react-app. The create-react-app tool is an officially supported way to create React applications. Node.js is required to use create-react-app. Go to the directory where you would like to create your application and open your terminal.
+Run the command below to create a React application named as my-new-app.
+npx create-react-app my-new-app
+To RUN React application:
+The below command will move to the my-new-app
+cd my-new-app
+Run the below command to execute your react application.
+npm start
+How does React works
+React creates a VIRTUAL DOM in memory. React does not manipulate the browser's DOM directly Instead it creates a virutal DOM in memory, At which all the required manipulations  are performed, before making changes in the browser DOM.
+What is JSX ?
+JSX is abbreviated as Javascript XML. Which is used to write HTML In react. JSX makes it easier to add and write HTML statments in React.
+Let us see a simple example: 
+const MyApp = <h1>Here is JSX!</h1>;
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(MyApp );
+Let see an example without JSX:
+const MyApp = React.createElement('h1', {}, 'we dont use JSX!');
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(MyApp );
+Expressions In JSX:
+With the help of JSX we can write expressions inside curly braces { }.
+The expression can be a property, React variable, or any other valid JavaScript expression. JSX  executes the expression and return the result.
+React Components
+Components are independent bits of code and can be used any number of times. They serve the same purpose as JavaScript functions, but work in isolation and return HTML.
+Components can be of two types, Class components and Function components.
+How to create a component?
+While creating a React component, the name of the component MUST start with an upper case letter.
+Class components
+A class component must extend React.Component statement. This statement actually creates an inheritance to React.Component, and provides access to React.Component's functions.
+This component requires a render() method, and returns HTML.
+Let us create a basic Class component called Bike:
+class Bike extends React.Component {
+  render() {
+    return <h2>Hi, I am a bike!</h2>;
+  }
+}
+Functional component:
+A Function component behaves very much similar to class component but it can performs the same operation with lesser code and also easier to understand. Functional components also returns HTML. The functional component is also known as a stateless component because they do not hold or manage state. 
+let see a basic example for functional component:
+function Bike() {
+  return <h2>Hi, I am a bike!</h2>;
+}
+Rendering a component:
+Now your React application has a component called Bike, which returns an <h2> element.
+To use this component in your application, use similar syntax as normal HTML: <Bike />
+Example:
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Bike />);
+React State:
+The state is used to store data or information about the component. The state in a component can change over time. The change in state over time can happen as a response to user action or system event. A component with the state is known as stateful components. It is the heart of the react component which determines the behavior of the component and how it will render. They are also responsible for making a component dynamic and interactive.
+A state must be kept as simple as possible. It can be set by using the setState() method and calling setState() method triggers UI updates. A state represents the component's local state or information. It can only be accessed or modified inside the component or by the component directly. To set an initial state before any interaction occurs, we need to use the getInitialState() method.
+React Props:
+props is the shortform of properties. Props are passed as arguments into React Component via HTML attributes. React Props are like function arguments in JavaScript and attributes in HTML. 
+Syntax to send props into a component as HTML attributes:
+const element = <Bike brand="KTM" />; 
+brand attribute inside React component:
+function Bike(props) {
+  return <h2>I am a { props.brand }!</h2>;
+}
+How to pass data from one component to another component ?
+Props are also how you pass data from one component to another, as parameters.
+function Bike(props) {
+  return <h2>I am a { props.brand }!</h2>;
+}
+function Garage() {
+  return (
+    <>
+      <h1>Who lives in my garage?</h1>
+      <Bike brand="KTM" />
+    </>
+  );
+}
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Garage />);
+
+React events:
+An event is an action that could be triggered as a result of the user action or system generated event. For example, a mouse click, loading of a web page, pressing a key, window resizes, and other interactions are called events.
+React has its own event handling system which is very similar to handling events on DOM elements. The react event handling system is known as Synthetic Events. The synthetic event is a cross-browser wrapper of the browser's native event.
+React has the same events as HTML: click, change, mouseover etc.
+Adding events:
+React events are generally written in camelCase syntax:
+for example: onClick instead of onclick.
+React event handlers are written inside curly braces:
+onClick={shoot}  instead of onClick="shoot()".
+Syntax for onClick events in React JS:
+<button onClick={shoot}>Click Me!</button>
+example :
+function Sports() {
+  const shoot = () => {
+    alert("Great Shot!");
+  }
+  return (
+    <button onClick={shoot}>Take the shot!</button>
+  );
+}
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Sports />);
+
+Passing arguments: 
+
+To pass an argument using event handler we use arrow functions
+example:
+function Football() {
+  const shoot = (a) => {
+    alert(a);
+  }
+  return (
+    <button onClick={() => shoot("Goal!")}>Take the shot!</button>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Football />);
+
+React conditional Rendering:
+
+In React we can render components conditionally, there are several ways of doing this 
+Conditional rendering using IF statements:
+we can decide which component to be rendered using IF javascript Operator.
+will see an example for conditional rendering using two components
+function MissedGoal() {
+  return <h1>MISSED!</h1>;
+}
+function MadeGoal() {
+  return <h1>Goal!</h1>;
+}
+Now we will create a component that choose any one of the above components based on a condition.
+function Goal(props) {
+  const isGoal = props.isGoal;
+  if (isGoal) {
+    return <MadeGoal/>;
+  }
+  return <MissedGoal/>;
+}
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Goal isGoal={false} />); 
+Another way of conditional rendering is to use Logical && operator:
+function Garage(props) {
+  const Bike = props.Bike;
+  return (
+    <>
+      <h1>Garage</h1>
+      {Bike.length > 0 &&
+        <h2>
+          You have {Bike.length} Bikes in your garage.
+        </h2>
+      }
+    </>
+  );
+}
+
+const cars = ['KTM', 'Honda', 'Enfield'];
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Garage Bike={Bike} />);
+
+If Bikes.length > 0 is equates to true, the expression after && will render.
+
+Try emptying the Bikes array:
+
+const cars = [];
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Garage cars={cars} />);
+
+Another simplest way to acheive conditional rendering is by using ternary Operator
+Syntax of ternary operator:
+
+condition ? <expression if true> : <expression if false>
+
+Let's see an example
+
+function Goal(props) {
+  const isGoal = props.isGoal;
+  return (
+    <>
+      { isGoal ? <MadeGoal/> : <MissedGoal/> }
+    </>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Goal isGoal={false} />);
+
+React Lists :
+In React, Lists will be rendered using some type of loop.
+Rendering a list using Map() method 
+lets see an example for list rendering using map() method
+function Bike(props) {
+  return <li>I am a { props.brand }</li>;
+}
+function Garage() {
+  const bikes = ['KTM', 'Honda', 'Enfield'];
+  return (
+    <>
+      <h1>Who lives in my garage?</h1>
+      <ul>
+        {bikes.map((bike) => <Bike brand={bike} />)}
+      </ul>
+    </>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Garage />);
+
+Output: 
+Who lives in my garage?
+I am a KTM
+I am a Honda
+I am a Enfield
+React keys:
+A key is a unique identifier. In React, Keys are used to identify the items which are changed, updated, or deleted from the Lists. React keys are used when we dynamically create components or when users try to alter the lists. It helps us to determine which components in a collection are required to be re-rendered instead of re-rendering all the components every time.
+Keys should be declared inside the array to give the elements a stable identity. The best way to pick a key as a string that uniquely identifies the items in the list. It can be understood with the below example.
+const stringLists = [ 'John', 'Kelly', 'Hannah', 'Darbi', 'Peter' ];   
+const updatedLists = stringLists.map((strList)=>{   
+    <li key={strList.id}> {strList} </li>;   
+});   
+React Refs:
+Ref is the shortform of references in React, Refs are similar to Keys in React. This attribute is used to store a reference to particular React elements or DOM. It provides a way to access  React elements or React DOM nodes and a way to interact with it. It is helpful when  the value of a child component needs to be changed, without using props.
+Creation of ref:
+In React, Refs are created by using React.createRef(). It can be assigned to React elements via the ref attribute. It is generally assigned to an instance property when a component is created, and then can be referenced throughout the component.
+let us see an example:
+class MyComponent extends React.Component {  
+  constructor(props) {  
+    super(props);  
+    this.callRef = React.createRef();  
+  }  
+  render() {  
+    return <div ref={this.callRef} />;  
+  }  
+}  
+
+when do not use refs:
+•	Using of refs should be avoided for anything that can be done declaratively. For instance, you need to pass an isOpen prop to it, instead of using open() and close() methods on a Dialog component.
+•	Overuse of Refs should be avoided.
+
+React Fragments:
+In React, Generally we use render method inside the component to render something on screen. This render method returns single or multipe elements.  The render method will only render a single root node inside it at a time. However, if you want to return multiple elements, the render method will require a 'div' tag and put the entire content or elements inside it. This extra node to the DOM sometimes results in the wrong formatting of your HTML output and also not encouraged by the many developers.
+// Rendering with div tag  
+class App extends React.Component {   
+     render() {    
+      return (   
+         //Extraneous div element   
+         <div>  
+           <h2> Hello World! </h2>   
+           <p> Welcome to React Tutor</p>   
+         </div>   
+      );   
+     }   
+}  
+As a solution to this problem, Fragments are introduced from the 16.2 and above version. Fragments allow you to group a list of children without adding extra nodes to the DOM.
+
+// Rendering with fragments tag  
+class App extends React.Component {   
+    render() {   
+     return (   
+       <React.Fragment>  
+            <h2> Hello World! </h2>   
+        <p> Welcome to the React Tutor. </p>   
+         </React.Fragment>  
+     );   
+    }   
+}  
+Uses of Fragments:
+•	Execution of code becames faster when compared to 'div' tag.
+•	Takes less memory.
+Fragments short syntax:
+Another shorthand exists for declaring fragments for the above method. We can use of '<>' and '' instead of the 'React.Fragment' which looks like an empty tag.
+Let us see an example using shorthand fragment tag:
+//Rendering with shorthand fragment syntax   
+class Blocks extends React.Component {   
+  render() {   
+    return (   
+      <>    
+        <h2> Hello World! </h2>   
+        <p> Welcome to the React Tutor </p>   
+      </>   
+    );   
+  }   
+} 
+
+React Router
+
+Routing is a process of naviating a user between different pages based on the users action or request. ReactJS routes are used to define many number of routes in a single applicaton. It is mainly used for developing single-paged applications. When a user types a particular URL into the browser, and if this URL path matches any 'route' inside the router file, the user will be redirected to that particular route.
+
+React router installation:
+
+There are three differenet packages for routing 
+•	react-router : It provides core routing components and functions for required for Routing
+•	react-router-dom: It is used to design web applications.
+•	react-router-native: It is used to design mobile applications.
+
+Components in React Router:
+
+There are two types of components in React router
+•	<BrowserRouter/>
+•	<HashRouter/>
+<BrowserRouter/>  is mainly used to handle Dynamic URL
+<HashRouter/> focus mainly on handling static request
+
+Route:
+<Route/> is mainly used to render a component based on specified path.
+
+Let us see an example for <Route/>
+
+import React from 'react';  
+import ReactDOM from 'react-dom';  
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom'  
+import './index.css';  
+import App from './App';  
+import Dashboard from './Dashboard'  
+import Profile from './Profile'  
+  
+const routing = (  
+  <Router>  
+    <div>  
+      <h1>React Router Example</h1>  
+      <Route path="/" component={App} />  
+      <Route path="/dashboard" component={Dashboard} />  
+      <Route path="/profile" component={Profile} />  
+    </div>  
+  </Router>  
+)  
+ReactDOM.render(routing, document.getElementById('root'));  
+
+<Link/> component :
+
+<Link/> component is used to create links which allows us to navigate on different URLs and it also render its content without reloading the webpage.
+example:
+const routing = (  
+  <Router>  
+    <div>  
+      <h1>React Router Example</h1>  
+      <ul>  
+        <li>  
+          <Link to="/">Home</Link>  
+        </li>  
+        <li>  
+          <Link to="/dashboard">Dashboard</Link>  
+        </li>  
+        <li>  
+          <Link to="/profile">Profile</Link>  
+        </li>  
+      </ul>  
+</Router>
+)
+
+React router switch: It is used to render components only when the path is matched, Otherwise it navigates to the not found component.
+syntax:
+<Switch>  
+         <Route exact path="/" component={App} />  
+         <Route path="/dashboard" component={Dashboard} />  
+         <Route path="/profile" component={Profile} />  
+         <Route component={Notfound} />  
+ </Switch>  
+
+Benefits of React router: 
+•	It is not required to set the browser history manually.
+•	To navigate the internal links in the application we use Links. It works same as anchor tag.
+•	For rendering, it uses Switch feature.
+•	The Router should be a Single Child element.
+
+React Higher Order components:
+
+Higher order components is also known as HOC. In React, it is one of the advanced technique for reusing component logic. It is a function that takes a component and returns a new component. This is similar to JavaScript functions used for adding additional functionalities to the existing component.
+
+A higher order component function accepts another component as an argument. The best example to understand this is map function. The primary goal of this is to simplify the component logic into smaller and simplier functions that can be used multiple times as you need.
+
+Syntax :    const MyNewComponent = higherOrderComponent(WrappedComponent);  
+
+we will try to understand HOC with a simple example 
+
+//Function Creation  
+function add (a, b) {  
+  return a + b  
+}  
+function higherOrder(a, addReference) {  
+  return addReference(a, 20)  
+}  
+//Function call  
+higherOrder(30, add) // 50  
+
+React-Redux:
+Redux is an open-source JavaScript library used to manage application state. React uses Redux for building the user interface. 
+React Redux is the official React binding for Redux. It allows React components to read data from a Redux Store, and dispatch Actions to the Store to update data. Redux helps apps to scale by providing a sensible way to manage state through a unidirectional data flow model. React Redux is conceptually simple. It subscribes to the Redux store, checks to see if the data which your component wants have changed, and re-renders your component.
+Redux was inspired by Flux. Redux studied the Flux architecture and omitted unnecessary complexity.
+Redux does not have Dispatcher concept.
+Redux has an only Store whereas Flux has many Stores.
+The Action objects will be received and handled directly by Store.
+Redux architecture:
+ 
+The components of Redux architecture are explained below.
+STORE: A Store is a place where the entire state of your application lists. It manages the status of the application and has a dispatch(action) function. It is like a brain responsible for all moving parts in Redux.
+ACTION: Action is sent or dispatched from the view which are payloads that can be read by Reducers. It is a pure object created to store the information of the user's event. It includes information such as type of action, time of occurrence, location of occurrence, its coordinates, and which state it aims to change.
+REDUCER: Reducer read the payloads from the actions and then updates the store via the state accordingly. It is a pure function to return a new state from the initial state.
+Redux installation: 
+To Install and use react-redux, you need to use the following command: 
+ $ npm install redux react-redux --save  
+React Hooks: 
+Hooks is feature introduced in React 16.8 version, It allows you to write state and other react components without using class. Hooks does not work with class component.
+It does not contain any breaking changes as it is backward compitable. If you write a functional component and you need to add state to it, previously you need to convert it into class component. Now you can add state inside functional components by adding  Hooks.
+Pre-requisites of React-Hooks:
+•	Node version 6 or above
+•	NPM version 5.2 or above
+•	Create-react-app tool for running the React App
+React hooks Installation:
+To install React-hooks we need to install the following commands
+$ npm install react@16.8.0-alpha.1 --save  
+$ npm install react-dom@16.8.0-alpha.1 --save  
+Hooks State:
+Hooks state is the new way of declaring state in functional components. Hooks uses useState() functional component to update or retrive the state value. we will see an example for useState() for better understanding.
+
+import React, { useState } from 'react'; 
+function CountApp() {  
+  // Declare a new state variable, which we'll call "count"  
+  const [count, setCount] = useState(0);  
+  
+  return (  
+    <div>  
+      <p>You clicked {count} times</p>  
+      <button onClick={() => setCount(count + 1)}>  
+        Click me  
+      </button>  
+    </div>  
+  );  
+}  
+export default CountApp;  
+
+Hooks Effect:
+
+Hooks effect allows us to perform an action in the functional components. It does not use lifecycle methods which we use in class component. Effect hooks is equivalent to componentDidMount(), componentDidUpdate(), and componentWillUnmount() lifecycle methods.
+useEffect() hooks is used to perform:
+
+•	Updating the DOM,
+•	Fetching and consuming data from a server API,
+•	Setting up a subscription, etc.
+
+Let us see an example for useEffect() hook:
+
+import React, { useState, useEffect } from 'react';  
+  
+function EffectExample() {  
+  const [count, setCount] = useState(0);  
+  
+  // Similar to componentDidMount and componentDidUpdate:  
+  useEffect(() => {  
+    // Update the document title using the browser API  
+    document.title = `You clicked ${count} times`;  
+  });  
+  
+  return (  
+    <div>  
+      <p>You clicked {count} times</p>  
+      <button onClick={() => setCount(count + 1)}>  
+        Click me  
+      </button>  
+    </div>  
+  );  
+}  
+export default EffectExample;  
+
+In the above code we set a custom document title and number of times it was clicked.
+
+Custom Hooks:
+
+Custom hook is justlike the normal function, and the word use in the beginning tells that this funtion is a custom hook. Building Custom hooks allows us to resuse components logic in the form of function. Let us see a simple example to understand cutom hooks,
+
+import React, { useState, useEffect } from 'react';  
+const useDocumentTitle = title => {  
+  useEffect(() => {  
+    document.title = title;  
+  }, [title])  
+}  
+ 
+function CustomCounter() {  
+  const [count, setCount] = useState(0);  
+  const incrementCount = () => setCount(count + 1);  
+  useDocumentTitle(`You clicked ${count} times`);  
+    
+  return (  
+    <div>  
+      <p>You clicked {count} times</p>  
+      <button onClick={incrementCount}>Click me</button>  
+    </div>  
+  )  
+}  
+export default CustomCounter; 
+
+
+In the above example useDocumentTitle is a custom hook, which takes an argument as a string, Inside useDocumentTitle we used effect hook which set the title as long as it has changed. The second argument of effect hooks checks for title updation and renders effect hooks once, after every title updation.
+
+Basic hooks:
+•	useState
+•	useEffect
+•	useContext
+
+Additional hooks:
+•	useReducer
+•	useCallback
+•	useMemo
+•	useRef
+•	useImperativeHandle
+•	useLayoutEffect
+•	useDebugValue
+
+
+React Context: 
+
+Context allows passing data between different components without passing props from one level to another manually.
+In React application, we pass data in a top-down approach using props. It is inconvenient for certain types of props that are required by many components in the React application. We can pass values between components without passing a prop through each and every level of the component tree using React Context.
+let us see an example for using React Context
+without using React-context:
+class App extends React.Component {  
+  render() {  
+    return <Toolbar mode="light" />;  
+  }  
+}  
+function Menu(props) {  
+  return (  
+    <div>  
+      <ThemedButton theme={props.mode} />  
+    </div>  
+  );  
+}  
+  
+class ThemeButton extends React.Component {  
+  render() {  
+    return <Button theme={this.props.mode} />;  
+  }  
+}  
+In the above code, the Menu function component takes an extra "mode" prop and pass it to the ThemeButton. It can become inconvenient if every single button in the app needs to know the mode because it would be required to pass through all components. But using context, we can avoid passing props for every component through intermediate elements.
+lets understand it from the below example. Here, context passes a value into the component tree without explicitly threading it through every single component.
+// Create a context for the current theme which is "dark" as the default.  
+const ThemeContext = React.createContext('dark');  
+  
+class App extends React.Component {  
+  render() {  
+    /* Use a ContextProvider to pass the current theme, which allows every component to read it, no matter how deep it is. Here, we are passing the "light" theme as the current value.*/  
+  
+    return (  
+      <ThemeContext.Provider value="light">  
+        <Toolbar />  
+      </ThemeContext.Provider>  
+    );  
+  }  
+}  
+  
+// Now, it is not required to pass the theme down explicitly for every component.  
+function Toolbar(props) {  
+  return (  
+    <div>  
+      <ThemedButton />  
+    </div>  
+  );  
+}  
+  
+class ThemedButton extends React.Component {  
+  static contextType = ThemeContext;  
+  render() {  
+    return <Button theme={this.context} />;  
+  }  
+}  
+
